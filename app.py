@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 2babe8242a9651e15e081bddffcbafd0b86b0334
 import pandas as pd
 import streamlit as st
 
