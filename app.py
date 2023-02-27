@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 
@@ -17,9 +16,6 @@ with col1:
     st.image('assest/wind.png', width=70)
 with col2:
     st.header("Spiro App")
-
-
-
 
 
 
@@ -221,7 +217,75 @@ try :
           st.line_chart(w[4])
 
       elif option == 'Extract features' :
-        pass
+
+        st.subheader('Extracted Features')
+
+        w=Spiro.extract_wavelet(df['Data'])
+
+        Positive_sustain=[]
+        Negative_sustain=[]
+        peak_lst=[]
+        peak_neg_lst=[]
+        dist_lst=[]
+        dist_neg_lst=[]
+        pp_lst=[]
+        pn_lst=[]
+        zer_lst=[]
+        flat_lst=[]
+        for i in range(0,len(w)):
+            
+            x=w[i]
+            
+            p,n=Spiro_feature.sig_continuance(x)
+
+            peak=Spiro_feature.sig_consecutive_positive_peak_distance(x)
+
+            peak_neg=Spiro_feature.sig_consecutive_negative_peak_distance(x)
+
+            dist=Spiro_feature.sig_difference_largest_positive_peaks(x)
+
+            dist_neg=Spiro_feature.sig_difference_largest_negative_peaks(x)
+
+            p_p=Spiro_feature.sig_positive_plateau_sustain_time(x)
+
+            p_n=Spiro_feature.sig_negative_plateau_sustain_time(x)
+
+            zero=Spiro_feature.sig_zero_hitting(x)
+
+            flatline=Spiro_feature.sig_flatline(x)
+            
+            Positive_sustain.append(p)
+            Negative_sustain.append(n)
+            peak_lst.append(peak)
+            peak_neg_lst.append(peak_neg)
+            dist_lst.append(dist)
+            dist_neg_lst.append(dist_neg)
+            pp_lst.append(p_p)
+            pn_lst.append(p_n)
+            zer_lst.append(zero)
+            flat_lst.append(flatline)
+            
+
+        data={'Positive_sustain':Positive_sustain,
+                  'Negative_sustain':Negative_sustain, 
+                  'Consecutive_Positive_Peak_Distance':peak_lst,
+                  'Consecutive_Negative_Peak_Distance':peak_neg_lst,
+                  'Difference_largest_positive_peaks':dist_lst,
+                  'Difference_largest_negative_peaks':dist_neg_lst,
+                  'Positive_plateau_sustain_time':pp_lst,
+                  'Negative_plateau_sustain_time':pn_lst,
+                  'Zero_hitting':zer_lst,
+                  'Flatline':flat_lst
+                                       }
+
+        d_f = pd.DataFrame(data, index =['Wavelet_1', 'Wavelet_2', 'Wavelet_3', 'Wavelet_4','Wavelet_5'])  
+        st.dataframe(d_f,use_container_width=True)
+        csv=d_f.to_csv().encode('utf-8')
+        st.download_button(
+        label="Download data as CSV",
+        data=csv,
+        file_name='Spiro_extracted_features.csv',
+        mime='text/csv',)
 
 
 
