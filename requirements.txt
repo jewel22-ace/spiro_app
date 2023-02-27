@@ -4,5 +4,4 @@ neurokit2
 matplotlib
 numpy
 pandas
-time
 scipy
