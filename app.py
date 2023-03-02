@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 2babe8242a9651e15e081bddffcbafd0b86b0334
 import pandas as pd
 import streamlit as st
 
@@ -85,12 +81,16 @@ try :
 
           flatline=Spiro_feature.sig_flatline(w[0])
 
+          fev1=Spiro_feature.sig_FEV1(w[0])
+
+          fvc=Spiro_feature.sig_FVC(w[0])
+
           m = {'Metrics': ['Positive_sustain', 'Negative_sustain', 'Consecutive_Positive_Peak_Distance', 
                     'Consecutive_Negative_Peak_Distance','Difference_largest_positive_peaks',
                     'Difference_largest_negative_peaks','Positive_plateau_sustain_time',
-                    'Negative_plateau_sustain_time','Zero_hitting','Flatline'
+                    'Negative_plateau_sustain_time','Zero_hitting','Flatline','FEV 1','FVC'
                     ],
-          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline]}
+          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline,fev1,fvc]}
           d = pd.DataFrame(m)
           st.dataframe(d,use_container_width=True)
 
@@ -116,12 +116,16 @@ try :
 
           flatline=Spiro_feature.sig_flatline(w[1])
 
+          fev1=Spiro_feature.sig_FEV1(w[1])
+
+          fvc=Spiro_feature.sig_FVC(w[1])
+
           m = {'Metrics': ['Positive_sustain', 'Negative_sustain', 'Consecutive_Positive_Peak_Distance', 
                     'Consecutive_Negative_Peak_Distance','Difference_largest_positive_peaks',
                     'Difference_largest_negative_peaks','Positive_plateau_sustain_time',
-                    'Negative_plateau_sustain_time','Zero_hitting','Flatline'
+                    'Negative_plateau_sustain_time','Zero_hitting','Flatline','FEV 1','FVC'
                     ],
-          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline]}
+          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline,fev1,fvc]}
           d = pd.DataFrame(m)
           st.dataframe(d,use_container_width=True)
 
@@ -147,12 +151,16 @@ try :
 
           flatline=Spiro_feature.sig_flatline(w[2])
 
+          fev1=Spiro_feature.sig_FEV1(w[2])
+
+          fvc=Spiro_feature.sig_FVC(w[2])
+
           m = {'Metrics': ['Positive_sustain', 'Negative_sustain', 'Consecutive_Positive_Peak_Distance', 
                     'Consecutive_Negative_Peak_Distance','Difference_largest_positive_peaks',
                     'Difference_largest_negative_peaks','Positive_plateau_sustain_time',
-                    'Negative_plateau_sustain_time','Zero_hitting','Flatline'
+                    'Negative_plateau_sustain_time','Zero_hitting','Flatline','FEV 1','FVC'
                     ],
-          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline]}
+          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline,fev1,fvc]}
           d = pd.DataFrame(m)
           st.dataframe(d,use_container_width=True)
 
@@ -178,12 +186,16 @@ try :
 
           flatline=Spiro_feature.sig_flatline(w[3])
 
+          fev1=Spiro_feature.sig_FEV1(w[3])
+
+          fvc=Spiro_feature.sig_FVC(w[3])
+
           m = {'Metrics': ['Positive_sustain', 'Negative_sustain', 'Consecutive_Positive_Peak_Distance', 
                     'Consecutive_Negative_Peak_Distance','Difference_largest_positive_peaks',
                     'Difference_largest_negative_peaks','Positive_plateau_sustain_time',
-                    'Negative_plateau_sustain_time','Zero_hitting','Flatline'
+                    'Negative_plateau_sustain_time','Zero_hitting','Flatline','FEV 1','FVC'
                     ],
-          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline]}
+          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline,fev1,fvc]}
           d = pd.DataFrame(m)
           st.dataframe(d,use_container_width=True)
 
@@ -209,12 +221,16 @@ try :
 
           flatline=Spiro_feature.sig_flatline(w[4])
 
+          fev1=Spiro_feature.sig_FEV1(w[4])
+
+          fvc=Spiro_feature.sig_FVC(w[4])
+
           m = {'Metrics': ['Positive_sustain', 'Negative_sustain', 'Consecutive_Positive_Peak_Distance', 
                     'Consecutive_Negative_Peak_Distance','Difference_largest_positive_peaks',
                     'Difference_largest_negative_peaks','Positive_plateau_sustain_time',
-                    'Negative_plateau_sustain_time','Zero_hitting','Flatline'
+                    'Negative_plateau_sustain_time','Zero_hitting','Flatline','FEV 1','FVC'
                     ],
-          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline]}
+          'Value': [p,n,peak,peak_neg,dist,dist_neg,p_p,p_n,zero,flatline,fev1,fvc]}
           d = pd.DataFrame(m)
           st.dataframe(d,use_container_width=True)
 
@@ -236,6 +252,9 @@ try :
         pn_lst=[]
         zer_lst=[]
         flat_lst=[]
+        fev1=[]
+        fvc=[]
+  
         for i in range(0,len(w)):
             
             x=w[i]
@@ -257,6 +276,11 @@ try :
             zero=Spiro_feature.sig_zero_hitting(x)
 
             flatline=Spiro_feature.sig_flatline(x)
+
+            fev1_=Spiro_feature.sig_FEV1(x)
+
+            fvc_=Spiro_feature.sig_FVC(x)
+
             
             Positive_sustain.append(p)
             Negative_sustain.append(n)
@@ -268,6 +292,9 @@ try :
             pn_lst.append(p_n)
             zer_lst.append(zero)
             flat_lst.append(flatline)
+            fev1.append(fev1_)
+            fvc.append(fvc_)
+            
             
 
         data={'Positive_sustain':Positive_sustain,
@@ -279,7 +306,9 @@ try :
                   'Positive_plateau_sustain_time':pp_lst,
                   'Negative_plateau_sustain_time':pn_lst,
                   'Zero_hitting':zer_lst,
-                  'Flatline':flat_lst
+                  'Flatline':flat_lst,
+                  'FEV 1':fev1,
+                  'FVC':fvc
                                        }
 
         d_f = pd.DataFrame(data, index =['Wavelet_1', 'Wavelet_2', 'Wavelet_3', 'Wavelet_4','Wavelet_5'])  
